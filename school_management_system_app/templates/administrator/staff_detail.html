@@ -1,0 +1,68 @@
+{% extends 'administrator/adm_base.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="card mb-4 mt-4">
+            <div class="card-header text-white bg-primary">
+                <center><h5>{{staff.position_title|capfirst}} {{staff.name |capfirst}}</h5></center>
+            </div>
+            <div class="card-body">
+                <center>
+                    <a href="{{staff.profile_pic.url}}"><img src="{{staff.profile_pic.url}}" class="rounded-circle" width="250" height="250"></a>
+                </center>
+                </br>
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <tbody class="text-dark">
+                            <tr class="text-dark bg-light">
+                                <th>Employee ID</th>
+                                <th>Category</th>
+                                <th>Gender</th>
+                                <th>Date of birth</th>
+                                <th>CID Number</th>
+                                <th>Qualification</th>
+                            </tr>
+                            <tr>
+                                <td>{{staff.Employee_ID}}</td>
+                                <td>{{staff.category |capfirst}}</td>
+                                <td>{{staff.gender |capfirst}}</td>
+                                <td>{{staff.date_of_birth}}</td>
+                                <td>{{staff.CID}}</td>
+                                <td>{{staff.qualification |capfirst}}</td>
+                            </tr>
+                            <tr class="text-dark bg-light">
+                                <th>Grade</th>
+                                <th>Position Level</th>
+                                <th>Nationality</th>
+                                <th>Subject</th>
+                                <th>Employment Type</th>
+                                <th>Email</th>
+                            </tr>
+                            <tr>
+                                <td>{{staff.grade}}</td>
+                                <td>{{staff.position_level}}</td>
+                                <td>{{staff.nationality |capfirst}}</td>
+                                <td>{{staff.subject |capfirst}}</td>
+                                <td>{{staff.Employment_type|capfirst}}</td>
+                                <td><a href="mailto:{{staff.email}}">{{staff.email}}</a></td>
+                            </tr>
+                            <tr class="text-dark bg-light">
+                                <th>Appointment Date</th>
+                                <th>Joining Date</th>
+                                <th>Transfered From</th>
+                                <th>Mobile Number</th>
+                                <th colspan="2">Permanent Address</th>
+                            </tr>
+                            <tr>
+                                <td>{{staff.appointment_date}}</td>
+                                <td>{{staff.joining_date_of_present_school}}</td>
+                                <td>{{staff.transfered_from|capfirst}}</td>
+                                <td><a href="tel:{{staff.contact_number}}">{{staff.contact_number}}</a></td>
+                                <td colspan="2">{{staff.permanent_address |capfirst}}</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

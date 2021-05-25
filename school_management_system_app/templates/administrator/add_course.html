@@ -1,0 +1,30 @@
+{% extends 'administrator/adm_base.html' %}
+
+{% block content %}
+<div class="container-fluid bg-light">
+    <div class="card mb-4 mt-4">
+        <div class="card-header bg-primary text-white">
+            <h5>Add Course</h5>
+            <a href="{% url 'add_course' %}" class="btn btn-light">Add New</a>
+        </div>
+        <div class="card-body">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}  
+            <form method="POST" class="p-3 mb-2 text-dark">
+            	{% csrf_token %}
+                    <div class="col">
+                        <label for="course" class="font-weight-bold">Course: </label>
+                        {{form.course}}
+                    </div>
+                    <br>
+                    <div class="col">
+                    	<button type = 'Submit' class="btn btn-primary">Add</button>
+                    </div>
+            </form> 
+        </div>
+    </div>
+</div>
+{%endblock%}

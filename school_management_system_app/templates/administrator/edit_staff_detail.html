@@ -1,0 +1,191 @@
+{% extends 'administrator/adm_base.html' %}
+
+{% block content %}
+<div class="container-fluid bg-light">
+    <div class="card mb-4 mt-4">
+        <div class="card-header bg-primary text-white ">
+            <h5>Update Staff Detail</h5>
+        </div>
+        <div class="card-body">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}       
+            <form method="POST" enctype="multipart/form-data" class="p-3 mb-2 text-dark">
+                {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="Employee_ID" class="font-weight-bold">Employee ID: </label>
+                            <input type="number" class="form-control" value="{{staff.Employee_ID}}" name="Employee_ID" id="Employee_ID" />
+                        </div>
+                        </br>
+                        <div class="col">
+                            <label for="name" class="font-weight-bold">Name: </label>
+                            <input type="text" class="form-control" value="{{staff.name}}" name="name" id="name" />
+                        </div>
+                        </br>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="gender" class="font-weight-bold">Gender: </label>
+                            <select name="gender" class="form-control" id="gender">
+                                <option selected>{{staff.gender}}</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        </br>
+                        <div class="col">
+                            <label for="date_of_birth" class="font-weight-bold">Date of Birth: </label>
+                            <input type="date" class="form-control" value="{{staff.date_of_birth|date:'Y-m-d'}}" name="date_of_birth" id="date_of_birth" />
+                        </div>
+                        </br>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            {% if form.CID.errors %}
+                                <div class="alert alert-danger">
+                                    <p><strong>{{ form.CID.errors }}</strong></p>
+                                </div>
+                            {% endif %}
+                            <label for="CID" class="font-weight-bold">CID: </label>
+                            <input type="number" class="form-control" value="{{staff.CID}}" name="CID" id="CID" />
+                        </div>
+                        </br>
+                        <div class="col">
+                            <label for="category" class="font-weight-bold">Category: </label>
+                            <select name="category" class="form-control" id="category">
+                                {% for key, value in form.fields.category.choices %}
+                                        <option value="{{key}}" {% if staff.category == key%} selected {%endif%}>{{value}}</option>
+                                    {% endfor %}
+                            </select>
+                        </div>
+                        </br>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="position_title" class="font-weight-bold">Position Title: </label>
+                            <input type="text" class="form-control" value="{{staff.position_title}}" name="position_title" id="position_title" />
+                        </div>
+                        </br>
+                        <div class="col">
+                            <label for="position_level" class="font-weight-bold">Position Level: </label>
+                            <input type="text" class="form-control" value="{{staff.position_level}}" name="position_level" id="position_level" />
+                        </div>
+                        </br>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="grade" class="font-weight-bold">Grade: </label>
+                            <input type="number" class="form-control" value="{{staff.grade}}" name="grade" id="grade" />
+                        </div>
+                        </br>
+                        <div class="col">
+                            <label for="appointment_date" class="font-weight-bold">Appointment Date: </label>
+                            <input type="date" class="form-control" value="{{staff.appointment_date|date:'Y-m-d'}}" name="appointment_date" id="appointment_date" />
+                        </div>
+                        </br>
+                    </div>
+                    </br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="joining_date_of_present_school" class="font-weight-bold">Date of Joining to the School: </label>
+                            <input type="date" class="form-control" value="{{staff.joining_date_of_present_school|date:'Y-m-d'}}" name="joining_date_of_present_school" id="joining_date_of_present_school" />
+                        </div>
+                        </br>
+                        <div class="col">
+                            <label for="transfered_from" class="font-weight-bold">Transfered From: </label>
+                            <input type="text" class="form-control" value="{{staff.transfered_from}}" name="transfered_from" id="transfered_from" />
+                        </div>
+                        </br>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="qualification" class="font-weight-bold">Qualification: </label>
+                            <textarea class="form-control" name="qualification" id="qualification">{{staff.qualification}}</textarea>
+                        </div>
+                        </br>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="Employment_type" class="font-weight-bold">Employment Type: </label>
+                            <select name="Employment_type" class="form-control" id="Employment_type">
+                                <option selected>{{staff.Employment_type}}</option>
+                                <option value="Regular">Regular</option>
+                                <option value="Contract">Contract</option>
+                            </select>
+                        </div>
+                        </br>
+                        <div class="col">
+                            <label for="nationality" class="font-weight-bold">Nationality: </label>
+                            <input type="text" class="form-control" value="{{staff.nationality}}" name="nationality" id="nationality" />
+                        </div>
+                        </br>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="subject" class="font-weight-bold">Subject: </label>
+                            <input type="text" class="form-control" value="{{staff.subject}}" name="subject" id="subject" />
+                        </div>
+                        </br>
+                        <div class="col">
+                            {% if form.contact_number.errors %}
+                                <div class="alert alert-danger">
+                                    <p><strong>{{ form.contact_number.errors }}</strong></p>
+                                </div>
+                            {% endif %}
+                            <label for="contact_number" class="font-weight-bold">Contact Number: </label>
+                            <input type="text" class="form-control" value="{{staff.contact_number}}" name="contact_number" id="contact_number" />
+                        </div>
+                        </br>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="permanent_address" class="font-weight-bold">Permanent Address: </label>
+                            <textarea class="form-control" name="permanent_address" id="permanent_address">{{staff.permanent_address}}</textarea>
+                        </div>
+                        </br>
+                    </div>
+                    </br>
+                    <div class="form-row">
+                        <div class="col">
+                            {% if form.email.errors %}
+                                <div class="alert alert-danger">
+                                    <p><strong>{{ form.email.errors }}</strong></p>
+                                </div>
+                            {% endif %}
+                            <label for="email" class="font-weight-bold">Email Address: </label>
+                            {{form.email}}
+                        </div>
+                        </br>
+                    </div>
+                    </br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="id_profile_pic" class="font-weight-bold">Profile Picture: </label>
+                            <strong>Currently: </strong>
+                            <a href="/{{staff.profile_pic}}">{{staff.profile_pic}}</a>
+                            <input type="checkbox" name="profile_pic-clear" id="profile_pic-clear_id">
+                            <label for="profile_pic-clear_id">Clear</label>
+                            <br>
+                            <strong>Change:</strong>
+                            <input type="file" name="profile_pic" accept="image/*" id="id_profile_pic">
+                        </div>
+                        </br>
+                    </div>
+                    <br>                
+                <button type = 'Submit' class="btn btn-primary">Update</button>
+            </form> 
+        </div>
+    </div>
+</div>    
+{% endblock %}

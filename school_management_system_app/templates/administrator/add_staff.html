@@ -1,0 +1,174 @@
+{% extends 'administrator/adm_base.html' %}
+
+{% block content %}
+<div class="container-fluid bg-light">
+    <div class="card mb-4 mt-4">
+        <div class="card-header bg-primary text-white">
+            <h5>Staff Registration Form</h5>
+            <a href="{% url 'add_staff' %}" class="btn btn-light">Add New</a>
+        </div>
+        <div class="card-body">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}  
+            <form method="POST" enctype="multipart/form-data" class="p-3 mb-2 text-dark">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col">
+                        <label for="Employee_ID" class="font-weight-bold">Employee ID: </label>
+                        {{form.Employee_ID}}
+                    </div>
+                    </br>
+                    <div class="col">
+                        <label for="name" class="font-weight-bold">Name: </label>
+                        {{form.name}}
+                    </div>
+                    </br>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="gender" class="font-weight-bold">Gender: </label>
+                        {{form.gender}}
+                    </div>
+                    </br>
+                    <div class="col">
+                        <label for="date_of_birth" class="font-weight-bold">Date of Birth: </label>
+                        {{form.date_of_birth}}
+                    </div>
+                    </br>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col">
+                        {% if form.CID.errors %}
+                            <div class="alert alert-danger">
+                                <p><strong>{{ form.CID.errors }}</strong></p>
+                            </div>
+                        {% endif %}
+                        <label for="CID" class="font-weight-bold">CID: </label>
+                        {{form.CID}}
+                    </div>
+                    </br>
+                    <div class="col">
+                        <label for="category" class="font-weight-bold">Category: </label>
+                        {{form.category}}
+                    </div>
+                    </br>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="position_title" class="font-weight-bold">Position Title: </label>
+                        {{form.position_title}}
+                    </div>
+                    </br>
+                    <div class="col">
+                        <label for="position_level" class="font-weight-bold">Position Level: </label>
+                        {{form.position_level}}
+                    </div>
+                    </br>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="grade" class="font-weight-bold">Grade: </label>
+                        {{form.grade}}
+                    </div>
+                    </br>
+                    <div class="col">
+                        <label for="appointment_date" class="font-weight-bold">Appointment Date: </label>
+                        {{form.appointment_date}}
+                    </div>
+                    </br>
+                </div>
+                </br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="joining_date_of_present_school" class="font-weight-bold">Date joined to School: </label>
+                        {{form.joining_date_of_present_school}}
+                    </div>
+                    </br>
+                    <div class="col">
+                        <label for="transfered_from" class="font-weight-bold">Transfered From: </label>
+                        {{form.transfered_from}}
+                    </div>
+                    </br>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="qualification" class="font-weight-bold">Qualification: </label>
+                        {{form.qualification}}
+                    </div>
+                    </br>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="Employment_type" class="font-weight-bold">Employment Type: </label>
+                        {{form.Employment_type}}
+                    </div>
+                    </br>
+                    <div class="col">
+                        <label for="nationality" class="font-weight-bold">Nationality: </label>
+                        {{form.nationality}}
+                    </div>
+                    </br>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="subject" class="font-weight-bold">Subject: </label>
+                        {{form.subject}}
+                    </div>
+                    </br>
+                    <div class="col">
+                    {% if form.contact_number.errors %}
+                            <div class="alert alert-danger">
+                                <p><strong>{{ form.contact_number.errors }}</strong></p>
+                            </div>
+                        {% endif %}
+                        <label for="contact_number" class="font-weight-bold">Contact Number: </label>
+                        {{form.contact_number}}
+                    </div>
+                    </br>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="permanent_address" class="font-weight-bold">Permanent Address: </label>
+                        {{form.permanent_address}}
+                    </div>
+                    </br>
+                </div>
+                </br>
+                <div class="form-row">
+                    <div class="col">
+                        {% if form.email.errors %}
+                            <div class="alert alert-danger">
+                                <p><strong>{{ form.email.errors }}</strong></p>
+                            </div>
+                        {% endif %}
+                        <label for="email" class="font-weight-bold">Email Address: </label>
+                        {{form.email}}
+                    </div>
+                    </br>
+                </div>
+                </br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="profile_pic" class="font-weight-bold">Profile Picture: </label>
+                        {{form.profile_pic}}
+                    </div>
+                    </br>
+                </div>
+                <br>
+                <button type = 'Submit' class="btn btn-primary">Add</button>
+            </form> 
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,183 @@
+{% extends 'administrator/adm_base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="card mb-4 mt-4">
+        <div class="card-header bg-primary text-light">
+            <h5>Total Number Of Students</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%">
+                    <thead>
+                    <thead class="text-dark">
+                        <tr>
+                            <th>Class</th>
+                            <th>Male</th>
+                            <th>Female</th>
+                            <th>Total</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-dark">
+                        <tr>
+                            <td>Seven</td>
+                            <td>{{male_seven.count}}</td>
+                            <td>{{female_seven.count}}</td>
+                            <td>{{total_seven.count}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-info btn-sm">
+                                    <a href="{% url 'seven'%}">View</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Eight</td>
+                            <td>{{male_eight.count}}</td>
+                            <td>{{female_eight.count}}</td>
+                            <td>{{total_eight.count}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-info btn-sm">
+                                    <a href="{% url 'eight'%}">View</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nine</td>
+                            <td>{{male_nine.count}}</td>
+                            <td>{{female_nine.count}}</td>
+                            <td>{{total_nine.count}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-info btn-sm">
+                                    <a href="{% url 'nine'%}">View</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ten</td>
+                            <td>{{male_ten.count}}</td>
+                            <td>{{female_ten.count}}</td>
+                            <td>{{total_ten.count}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-info btn-sm">
+                                    <a href="{% url 'ten'%}">View</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Eleven</td>
+                            <td>{{male_eleven.count}}</td>
+                            <td>{{female_eleven.count}}</td>
+                            <td>{{total_eleven.count}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-info btn-sm">
+                                    <a href="{% url 'eleven' %}">View</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Twelve</td>
+                            <td>{{male_twelve.count}}</td>
+                            <td>{{female_twelve.count}}</td>
+                            <td>{{total_twelve.count}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-info btn-sm">
+                                    <a href="{% url 'twelve'%}">View</a>
+                                </button>
+                            </td>
+                        </tr>
+                    <tfoot class="text-dark">
+                        <tr>
+                            <th>Total</th>
+                            <th>{{male.count}}</th>
+                            <th>{{female.count}}</th>
+                            <th colspan="2">{{total.count}}</th>
+                        </tr>
+                    </tfoot>
+                    </tbody>
+                </table>
+                <a href="{% url 'std_export_csv' %}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-lg text-white-50"></i> Download Student Data</a>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-4 mt-4">
+        <div class="card-header bg-primary text-light">
+            <h5>Total Number Of Staff</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="text-dark">
+                        <tr>
+                            <th>Category</th>
+                            <th>Male</th>
+                            <th>Female</th>
+                            <th>Total</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-dark">
+                        <tr>
+                            <td>Administration</td>
+                            <td>{{male_adm.count}}</td>
+                            <td>{{female_adm.count}}</td>
+                            <td>{{total_adm.count}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-info btn-sm">
+                                    <a href="{% url 'adm'%}">View</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Teaching Staff</td>
+                            <td>{{male_teacher.count}}</td>
+                            <td>{{female_teacher.count}}</td>
+                            <td>{{total_teacher.count}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-info btn-sm">
+                                    <a href="{% url 'teacher'%}">View</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >Supporting Staff</td>
+                            <td>{{male_support_staff.count}}</td>
+                            <td>{{female_support_staff.count}}</td>
+                            <td>{{total_support_staff.count}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-info btn-sm">
+                                    <a href="{% url 'support_staff' %}">View</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Non Teaching Staff</td>
+                            <td>{{male_non_teacher.count}}</td>
+                            <td>{{female_non_teacher.count}}</td>
+                            <td>{{total_non_teacher.count}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-info btn-sm">
+                                    <a href="{% url 'non_teacher'%}">View</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tfoot class="text-dark">
+                        <tr>
+                            <th>Total</th>
+                            <th>{{male_staff.count}}</th>
+                            <th>{{female_staff.count}}</th>
+                            <th colspan="2">{{total_staff.count}}</th>
+                        </tr>
+                        </tfoot>                   
+                    </tbody>
+                </table>
+                <a href="{% url 'staff_export_csv' %}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-lg text-white-50"></i> Download Staff Data</a>
+            </div>    
+        </div>
+    </div>
+</div>
+
+{% endblock%}

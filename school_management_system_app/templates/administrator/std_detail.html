@@ -1,0 +1,124 @@
+{% extends 'administrator/adm_base.html' %} 
+    {% block content %}
+<div class="container-fluid bg-light text-dark">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="bg-primary text-white text-center">
+                <tr>
+                <th scope="col"></th>
+                <th scope="col">{{std.name |capfirst}} {{std.standard}} {{std.section}} {{std.Stream}}</th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody class="text-dark ">
+                <tr class="bg-white">
+                <td>
+                <p><strong>STUDENT NUMBER: </strong>{{std.student_code}} </p>
+                <p><strong>GENDER: </strong>{{std.gender |capfirst}}</p>
+                <p><strong>DATE OF BIRTH: </strong>{{std.date_of_birth}}</p>
+                <p><strong>ADMISSION NUMBER: </strong>{{std.admission_no}}</p>
+                <p><strong>DATE OF ADMISSION: </strong>{{std.date_of_admission}}</p>
+                <p><strong>EMAIL: <a href="mailto:{{std.email}}"></strong>{{std.email}}</a></p>
+                <p><strong>CID NUMBER: </strong>{{std.CID}}</p>
+                <p><strong>PROCTOR MASTER: </strong>{{std.proctor_master}}</p>
+                </td>
+                <td><center><a href="{{std.profile_pic.url}}"><img src="{{std.profile_pic.url}}" width="300" height="300"></a></center></td>
+                <td>
+                <p><strong>CLASS TEACHER: </strong>{{std.class_teacher |capfirst}}</p>
+                <p><strong>COURSE: </strong>{{std.course |capfirst}}</p>
+                <p><strong>PREVIOUS SCHOOL: </strong>{{std.previous_school |capfirst}}</p>
+                <p><strong>PERMANENT ADDRESS: </strong>{{std.permanent_address |capfirst}}</p>
+                <p>
+                    <strong>MOBILE NUMBER: </strong><a href="tel:{{std.mobile_number}}">{{std.mobile_number}}</a></p>
+                <p><strong>BOARDER/DAYSCHOLAR: </strong>{{std.BoarderOrDayscholar |capfirst}}</p>
+                <p><strong>REGULAR/REPEATER: </strong>{{std.RegularOrRepeater |capfirst}}</p>
+                </td>
+            </tr>
+            </tbody>
+        </table> 
+    </div>
+    <br>
+        <table class="table table-striped table-bordered">
+            <thead class="bg-primary text-white">
+            <tr>
+                <th scope="col">Parent's Detail</th>
+            </tr>
+            </thead>
+            <tbody class="text-dark">
+                <tr class="bg-white">
+                    <td>
+                        <p><strong>FATHER'S NAME: </strong>{{std.father_name |capfirst}}</p>
+                        <p><strong>FATHER'S OCCUPATION: </strong>{{std.fathers_occupation |capfirst}}</p>
+                        <p><strong>MOTHER'S NAME: </strong>{{std.mother_name |capfirst}}</p>
+                        <p><strong>MOTHER'S OCCUPATION: </strong>{{std.mothers_occupation |capfirst}}</p>
+                        <p><strong>PARENT'S MOBILE NUMBER: </strong><a href="tel:{{std.parents_mobile_number}}">{{std.parents_mobile_number}}</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped table-bordered">
+            <thead class="bg-primary text-white">
+                <tr>
+                <th scope="col">Disciplinary Issue</th>
+                </tr>
+            </thead>
+            <tbody class="text-dark">
+                {%for disissue in disissue%}
+                    <tr>
+                        <td>
+                        <div class="card">
+                            <div class="card-body">
+                            <p><strong>VIOLATION DETAIL: </strong>{{disissue.Violation_detail }}</p>
+                            <p><strong>VIOLATION DATE: </strong>{{disissue.Violation_date }}</p>
+                            <p><strong>WARNING DECISION: </strong>{{disissue.Warning_decision }}</p>
+                            <p><strong>APPROVED BY: </strong>{{disissue.Approved_by}}</p>
+                            </div>
+                        </div>
+                        </td>    
+                    </tr>
+                {% endfor %}
+                {% if not disissue %}
+                    <tr>
+                        <td>
+                            <div class="alert alert-success" role="alert">
+                                Good student! No disciplinary issue.
+                            </div>    
+                        </td>
+                    </tr> 
+                {% endif %}       
+            </tbody>
+        </table> 
+        <table class="table table-striped table-bordered">
+            <thead class="bg-primary text-white">
+                <tr>
+                <th scope="col">Character Certificate</th>
+                </tr>
+            </thead>
+            <tbody class="text-dark">
+                {%for character_certificate in character_certificate%}
+                    <tr class="bg-white">
+                        <td>
+                        <div class="card">
+                            <div class="card-body">
+                            <p><strong>CATEGORY: </strong>{{character_certificate.Category }}</p>
+                            <p><strong>DESCRIPTION: </strong>{{character_certificate.Description }}</p>
+                            <p><strong>AWARDED ON: </strong>{{character_certificate.Awarded_on }}</p>
+                            <p><strong>AWARDED BY: </strong>{{character_certificate.Awarded_by}}</p>
+                            </div>
+                        </div>
+                        </td>    
+                    </tr>
+                {% endfor %}
+                {% if not character_certificate %}
+                    <tr>
+                        <td>
+                            <div class="alert alert-warning" role="alert">
+                                No Character Certificate Found!
+                            </div>    
+                        </td>
+                    </tr> 
+                {% endif %}       
+            </tbody>
+        </table> 
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<div class="card-body center">
+    <center>
+    <div class="container mb-5 mt-5">
+        <div class="card mb-3" style="max-width: 25rem;">
+            <div class="card-header bg-primary text-white">                    
+                <h5 class="card-title">Sign in to School Management System</h5>
+            </div>
+                <div class="card-body text-left">
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    <form method="POST"> 
+                        {% csrf_token %}  
+                        <div class="form-group">
+                            <strong><label for="username">Username:</label></strong>
+                            <input type="text" name="username" class="form-control" id="username"
+                            placeholder="Enter username...">
+                        </div>
+                        <div class="form-group">
+                            <strong><label for="password">Password:</label></strong>
+                            <input type="password" name="password" class="form-control" id="password"
+                            placeholder="Enter the password....">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </center>
+</div>
+<div class="container-fluid bg-dark text-light">
+        <center>
+        <div class="row justify-content-center mt-0">
+            <div class="col-md-5">
+            <br>
+                <h4 style="font-family: Helvetica;">Contact Us</h4>
+                <hr class="bg-white">
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-md-5">
+                <address>
+                    Jampeling Central School
+                    <br>
+                    Kanglung, Tashigang<br>
+                    Bhutan<br>
+                    <a href="tel:+9754535167">
+                    +9754535167<br><br>
+                    </a>
+                    <button type="button" class="btn btn-light">
+                        <a href="https://www.facebook.com/JCSkanglung/">
+                            <img src="https://img.icons8.com/fluent-systems-regular/30/000000/facebook-new.png"/>
+                        </a>
+                    </button>
+                    <button type="button" class="btn btn-light">
+                        <a href="mailto:tg.jampelingcs@education.gov.bt">
+                            <img src="https://img.icons8.com/fluent-systems-regular/30/000000/send-mass-email.png"/>
+                        </a>
+                    </button>
+                </address>
+            </div>
+        </div>
+        </center>
+    </div>
+{% endblock %}

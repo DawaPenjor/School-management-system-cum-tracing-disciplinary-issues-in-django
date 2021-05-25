@@ -1,0 +1,218 @@
+{% extends 'administrator/adm_base.html' %} 
+
+{% block content %}
+<div class="container-fluid bg-light">
+    <div class="card mb-4 mt-4">
+        <div class="card-header bg-primary text-white">
+            <h5>Update Student Detail</h5>
+        </div>
+        <div class="card-body">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}        
+            <form method="POST" enctype="multipart/form-data" class="p-3 mb-2 text-dark">
+                <fieldset class="border p-2">
+                    {% csrf_token %}
+                            <legend class="w-auto" class="font-weight-bold">Personal Detail:</legend>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="student_code" class="font-weight-bold">Student Code: </label>
+                                <input type="text" class="form-control" value="{{std.student_code}}" name="student_code" id="student_code" />
+                            </div>
+                            <div class="col">
+                                <label for="name" class="font-weight-bold">Name: </label>
+                                <input type="text" class="form-control" value="{{std.name}}" name="name" id="name"/>
+                            </div>
+                        </div>
+                        </br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="gender" class="font-weight-bold">Gender: </label>
+                                <select name="gender" class="form-control" id="gender"> 
+                                    {% for key, value in form.fields.gender.choices %}
+                                        <option value="{{key}}" {% if std.gender == key%} selected {%endif%}>{{value}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="standard" class="font-weight-bold">Class: </label>
+                                <select name="standard" class="form-control" id="standard">
+                                    {% for key, value in form.fields.standard.choices %}
+                                        <option value="{{key}}" {% if std.standard == key%} selected {%endif%}>{{value}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        </br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="section" class="font-weight-bold">Section: </label>
+                                <select name="section" class="form-control" id="section">
+                                    {% for key, value in form.fields.section.choices %}
+                                        <option value="{{key}}" {% if std.section == key%} selected {%endif%}>{{value}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="date_of_birth" class="font-weight-bold">Date of Birth(mm/dd/yyyy): </label>
+                                <input type="date" class="form-control date-picker" value="{{std.date_of_birth|date:'Y-m-d'}}" name="date_of_birth" id="date_of_birth" />
+                            </div>
+                        </div>
+                        </br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="course" class="font-weight-bold">Course: </label>
+                                <select name="course" class="form-control" id="course">
+                                    {% for key, value in form.fields.course.choices %}
+                                        <option value="{{key}}" {%if std.course.id == key%} selected {%endif%}>{{value}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col">
+                            <label for="RegularOrRepeater" class="font-weight-bold">Regular/Repeater: </label>
+                            <select name="RegularOrRepeater" class="form-control" id="RegularOrRepeater">
+                                {% for key, value in form.fields.RegularOrRepeater.choices %}
+                                        <option value="{{key}}" {% if std.RegularOrRepeater == key%} selected {%endif%}>{{value}}</option>
+                                    {% endfor %}
+                            </select>
+                            </div>
+                        </div>
+                        </br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="admission_no" class="font-weight-bold">Admission number: </label>
+                                <input type="number" class="form-control" value="{{std.admission_no}}" name="admission_no" id="admission_no" />
+                            </div>
+                            <div class="col">
+                                <label for="date_of_admission" class="font-weight-bold">Date of Admission(mm/dd/yyyy): </label>
+                                <input type="date" class="form-control" value="{{std.date_of_admission|date:'Y-m-d'}}" name="date_of_admission" id="date_of_admission" />
+                            </div>
+                        </div>
+                        </br>
+                        <div class="form-row">
+                            <div class="col">
+                            {% if form.email.errors %}
+                                <div class="alert alert-danger">
+                                    <p><strong>{{ form.email.errors }}</strong></p>
+                                </div>
+                            {% endif %}
+                                <label for="email" class="font-weight-bold">E-mail: </label>
+                                <input type="email" class="form-control" value="{{std.email}}" name="email" id="email" />
+                            </div>
+                            <div class="col">
+                            {% if form.CID.errors %}
+                                <div class="alert alert-danger">
+                                    <p><strong>{{ form.CID.errors }}</strong></p>
+                                </div>
+                            {% endif %}  
+                                <label for="CID" class="font-weight-bold">CID: </label>
+                                <input type="text" class="form-control" value="{{std.CID}}" name="CID" id="CID" />
+                            </div>
+                        </div>
+                        </br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="class_teacher" class="font-weight-bold">Class Teacher: </label>
+                                <select name="class_teacher" class="form-control" id="class_teacher">
+                                    {% for key, value in form.fields.class_teacher.choices %}
+                                        <option value="{{key}}" {%if std.class_teacher.id == key%} selected {%endif%}>{{value}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="previous_school" class="font-weight-bold">Previous School: </label>
+                                <input type="text" class="form-control" value="{{std.previous_school}}" name="previous_school" id="previous_school" />
+                            </div>
+                        </div>
+                        </br>
+                        <div class="form-row">
+                            <div class="col">
+                            {% if form.mobile_number.errors %}
+                                <div class="alert alert-danger">
+                                    <p><strong>{{ form.mobile_number.errors }}</strong></p>
+                                </div>
+                            {% endif %}
+                                <label for="mobile_number" class="font-weight-bold">Mobile Number: </label>
+                                <input type="text" class="form-control" value="{{std.mobile_number}}" name="mobile_number" id="mobile_number" />
+                            </div>
+                            <div class="col">
+                                <label for="BoarderOrDayscholar" class="font-weight-bold">Boarder/Dayscholar: </label>
+                                <select name="BoarderOrDayscholar" class="form-control" id="BoarderOrDayscholar">
+                                    {% for key, value in form.fields.BoarderOrDayscholar.choices %}
+                                        <option value="{{key}}" {% if std.BoarderOrDayscholar == key%} selected {%endif%}>{{value}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        </br>
+                        <div class="form-group">
+                            <label for="proctor_master" class="font-weight-bold">Proctor Master: </label>
+                            <select name="proctor_master" class="form-control" id="proctor_master">
+                                {% for key, value in form.fields.proctor_master.choices %}
+                                    <option value="{{key}}" {%if std.proctor_master.Employee_ID == key%} selected {%endif%}>{{value}}</option>
+                                {% endfor %}
+                            </select>
+                        </div> 
+                        <div class="form-group">
+                            <label for="permanent_address" class="font-weight-bold">Permanent Address: </label>
+                            <textarea class="form-control" name="permanent_address" id="permanent_address">{{std.permanent_address}}</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col">
+                                <label for="id_profile_pic" class="font-weight-bold">Profile pic:</label>
+                                <br>
+                                <strong>Currently: </strong>
+                                <a href="/{{std.profile_pic}}">{{std.profile_pic}}</a>
+                                <input type="checkbox" name="profile_pic-clear" id="profile_pic-clear_id">
+                                <label for="profile_pic-clear_id">Clear</label>
+                                <br>
+                                <strong>Change:</strong>
+                                <input type="file" name="profile_pic" accept="image/*" id="id_profile_pic">
+                            </div>
+                        </div>
+                    </fieldset>
+                    </br>
+                    <fieldset class="border p-2">
+                        <legend class="w-auto" class="font-weight-bold">Parent's Detail:</legend>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="father_name" class="font-weight-bold">Father's Name: </label>
+                                <input type="text" class="form-control" value="{{std.father_name}}" name="father_name" id="father_name" />
+                            </div>
+                            <div class="col">
+                                <label for="mother_name" class="font-weight-bold">Mother's Name: </label>
+                                <input type="text" class="form-control" value="{{std.mother_name}}" name="mother_name" id="mother_name" />
+                            </div>
+                        </div>
+                        </br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="fathers_occupation" class="font-weight-bold">Father's Occupation: </label>
+                                <input type="text" class="form-control" value="{{std.fathers_occupation}}" name="fathers_occupation" id="fathers_occupation" />
+                            </div>
+                            <div class="col">
+                                <label for="mothers_occupation" class="font-weight-bold">Mother's Occupation: </label>
+                                <input type="text" class="form-control" value="{{std.mothers_occupation}}" name="mothers_occupation" id="mothers_occupation" />
+                            </div>
+                        </div>
+                        </br>
+                        <div class="form-group">
+                            {% if form.parents_mobile_number.errors %}
+                                <div class="alert alert-danger">
+                                    <p><strong>{{ form.parents_mobile_number.errors }}</strong></p>
+                                </div>
+                            {% endif %}
+                            <label for="parents_mobile_number" class="font-weight-bold">Parent's Mobile Number: </label>
+                            <input type="text" class="form-control" value="{{std.parents_mobile_number}}" name="parents_mobile_number" id="parents_mobile_number" />
+                        </div>
+                </fieldset>
+                </br>
+                <button type = 'Submit' class="btn btn-primary">Update</button>
+            </form> 
+        </div>
+    </div> 
+</div>   
+{% endblock %}

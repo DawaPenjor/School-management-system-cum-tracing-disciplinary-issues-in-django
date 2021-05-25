@@ -1,0 +1,120 @@
+{% extends 'administrator/adm_base.html' %}
+{% block content %}
+<div class="container">
+<div class="container-fluid bg-white text-dark ">
+    <br>
+    <center><h3 style="font-family: Helvetica;">Supporting Staff </h3>
+      <button type="submit" class="btn btn-danger my-2 my-sm-0">Male: {{male.count}}</button>
+      <button type="submit" class="btn btn-danger my-2 my-sm-0">Female: {{female.count}}</button>
+      <button type="submit" class="btn btn-danger my-2 my-sm-0">Total: {{total.count}}</button></center>
+    <hr>
+  <br><center>
+    <form method="GET">
+      {{myFilter.form}}
+      <button type="submit" class="btn btn-primary my-2 my-sm-0">Search</button>
+    </form></center>
+    </br>
+    <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="bg-success text-white">
+        <tr>
+          <th scope="col">EID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Title</th>
+          <th scope="col">Detail</th>
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody class="text-dark">
+        {% for all_field in all_field%}
+        <tr>
+          <th scope="row">{{all_field.Employee_ID}}</th>
+          <td>{{all_field.name}}</td>
+          <td>{{all_field.category}}</td>
+          <td>{{all_field.position_title}}</td>
+          <td>
+            <button type="button" class="btn btn-outline-info btn-sm">
+              <a href="{% url 'support_staff_detail' all_field.Employee_ID%}">View</a>
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-success btn-sm">
+              <a href="{% url 'edit_support_staff_detail' all_field.Employee_ID %}">Edit</a>
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-outline-danger btn-sm"
+              data-toggle="modal"
+              data-target="#deletestaff{{all_field.Employee_ID}}">
+              Delete
+            </button>
+          </td>
+        </tr>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="deletestaff{{all_field.Employee_ID}}"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to delete<strong> {{all_field.name}}</strong> permanently?</p>
+              </div>
+              <div class="modal-footer">
+                <form method="POST" action="{% url 'delete_support_staff' all_field.Employee_ID %}">
+                  {% csrf_token %}
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <input class="btn btn-danger" value="Delete Permanently" type="submit">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item"><a class="page-link" href="?page=1">Previous</a></li>
+        {% if all_field.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ all_field.previous_page_number }}"
+            >{{ all_field.previous_page_number }}</a>
+        </li>
+        {% endif %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ all_field.number }}"
+            >{{ all_field.number }}</a>
+        </li>
+        {% if all_field.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ all_field.next_page_number }}"
+            >{{ all_field.next_page_number }}</a>
+        </li>
+        {% endif %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ all_field.paginator.num_pages }}"
+            >Next</a>
+        </li>
+      </ul>
+    </nav>
+</div>
+</div>
+{% endblock content %}

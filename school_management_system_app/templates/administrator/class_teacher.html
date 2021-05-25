@@ -1,0 +1,70 @@
+{% extends 'administrator/adm_base.html' %}
+{% block content %}
+<div class="container bg-white text-dark">
+	<div class="table-responsive">
+	  	<table class="table table-hover">
+		    <thead class="bg-primary text-white">
+		      <tr>
+		        <th scope="col">Name</th>
+		        <th scope="col">Class</th>
+		        <th scope="col">Section</th>
+		        <th scope="col">Course</th>
+		        <th scope="col">Delete</th>
+		      </tr>
+		    </thead>
+		    <tbody class="text-dark">
+		    	{% for all_field in class_teacher%}
+		      	<tr>
+			        <td>{{all_field.name}}</td>
+			        <td>{{all_field.standard}}</td>
+			        <td>{{all_field.section}}</td>
+			        <td>{{all_field.course}}</td>
+			        <td>
+			          <button
+			            type="button"
+			            class="btn btn-outline-danger btn-sm"
+			            data-toggle="modal"
+			            data-target="#deleteclassteacher{{all_field.id}}">
+			            Delete
+			          </button>
+			        </td>
+		     	</tr>
+		     	<!-- Modal -->
+			     <div
+			        class="modal fade"
+			        id="deleteclassteacher{{all_field.id}}"
+			        tabindex="-1"
+			        role="dialog"
+			        aria-labelledby="exampleModalCenterTitle"
+			        aria-hidden="true">
+			        <div class="modal-dialog modal-dialog-centered" role="document">
+			            <div class="modal-content">
+				            <div class="modal-header">
+				              <button
+				                type="button"
+				                class="close"
+				                data-dismiss="modal"
+				                aria-label="Close">
+				                <span aria-hidden="true">&times;</span>
+				              </button>
+				            </div>
+				            <div class="modal-body">
+				              <p>Are you sure you want to delete<strong> {{all_field.name}}</strong> permanently from class teacher list?</p>
+				            </div>
+				            <div class="modal-footer">
+				              <form method="POST" action="{% url 'delete_class_teacher' all_field.id%}">
+				                {% csrf_token %}
+				                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				                <input class="btn btn-danger" value="Delete Permanently" type="submit">
+				              </form>
+				            </div>
+			            </div>
+			        </div>
+			      </div>
+			      {% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}
