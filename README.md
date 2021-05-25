@@ -7,15 +7,15 @@ Database - PostgreSQL
 
 
 # Features of the system 
-Add and Manage staff
-Can download the data for office record annually
-Add and Manage student
-Can download the data for office record annually
-Add Class teacher
-Add courses offered in the school
-Trace student Disciplinary issue
-Trace merit certificate of the student
-Export data in csv format
+1. Add and Manage staff
+2. Can download the data for office record annually
+3. Add and Manage student
+4. Can download the data for office record annually
+5. Add Class teacher
+6. Add courses offered in the school
+7. Trace student Disciplinary issue
+8. Trace merit certificate of the student
+9. Export data in csv format
 
 
 # Access admin:
