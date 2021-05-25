@@ -1,9 +1,9 @@
 # School-management-system-cum-tracing-disciplinary-issues-in-django
-Technical background of the system
-Programming language – Python programming
-Framework – Django 3
-Frontend – Bootstrap 4.0
-Database - PostgreSQL 
+# Technical background of the system
+1. Programming language – Python programming
+2. Framework – Django 3
+3. Frontend – Bootstrap 4.0
+4. Database - PostgreSQL 
 
 
 # Features of the system 
@@ -19,5 +19,5 @@ Database - PostgreSQL
 
 
 # Access admin:
-username: dawa
-password: dawa2021
+. username: dawa
+. password: dawa2021
